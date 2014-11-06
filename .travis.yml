@@ -9,8 +9,6 @@ cache:
   - build
 # Parallelize to speed things up: all the subtargets of the Makefile
 env:
-  global:
-  - PARALLEL_BUILD="-j 4"
   matrix:
   - DOCSET=master
   - DOCSET=server
@@ -21,6 +19,6 @@ env:
   - DOCSET=11-16
   - DOCSET=12-0
 script:
-  - make $DOCSET
+  - make $DOCSET PARALLEL_BUILD="-j 4"
 after_success:
   - echo "Here is where we might s3cmd sync"
