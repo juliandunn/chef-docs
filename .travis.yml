@@ -1,0 +1,26 @@
+language: python
+python:
+  - 3.4
+install:
+  - pip install Sphinx
+
+cache:
+  directories:
+  - build
+# Parallelize to speed things up: all the subtargets of the Makefile
+env:
+  global:
+  - PARALLEL_BUILD="-j 4"
+  matrix:
+  - DOCSET=master
+  - DOCSET=server
+  - DOCSET=client
+  - DOCSET=devkit
+  - DOCSET=ohai-6
+  - DOCSET=ohai-7
+  - DOCSET=11-16
+  - DOCSET=12-0
+script:
+  - make $DOCSET
+after_success:
+  - echo "Here is where we might s3cmd sync"
