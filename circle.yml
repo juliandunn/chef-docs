@@ -4,12 +4,5 @@ machine:
 
 test:
   override:
-    - make:
+    - case $CIRCLE_NODE_INDEX in 0) make master ;; 1) make server ;; 2) make client ;; 3) make devkit ;; 4) make ohai-7 ;; 5) make 12-0 ;; 6) make 11-16 ;; esac:
         parallel: true
-        files:
-        - master
-        - server
-        - client
-        - devkit
-        - ohai-7
-        - 12-0
