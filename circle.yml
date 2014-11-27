@@ -4,4 +4,12 @@ machine:
 
 test:
   override:
-    - make master
+    - make:
+        parallel: true
+        files:
+        - master
+        - server
+        - client
+        - devkit
+        - ohai-7
+        - 12-0
